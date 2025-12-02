@@ -7,7 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
 @Entity
-@Table(name = "groups")
+@Table(name = "groups_table")
 public class Group {
 
     @Id

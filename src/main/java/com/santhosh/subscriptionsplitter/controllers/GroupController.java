@@ -1,16 +1,26 @@
 package com.santhosh.subscriptionsplitter.controllers;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import com.santhosh.subscriptionsplitter.model.Group;
+import com.santhosh.subscriptionsplitter.service.GroupService;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping("/groups")
-@SpringBootApplication()
 public class GroupController {
 
-    @GetMapping("/test")
-    public String testGroup() {
-        return "Group API working!";
+    private final GroupService groupService;
+
+    public GroupController(GroupService groupService) {
+        this.groupService = groupService;
+    }
+
+    @PostMapping
+    public Group createGroup(@RequestBody Group group) {
+        return groupService.createGroup(group);
+    }
+
+    @GetMapping("/{id}")
+    public Group getGroup(@PathVariable Long id) {
+        return groupService.getGroupById(id);
     }
 }

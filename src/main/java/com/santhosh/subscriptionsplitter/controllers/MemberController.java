@@ -1,17 +1,28 @@
 package com.santhosh.subscriptionsplitter.controllers;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import com.santhosh.subscriptionsplitter.model.Member;
+import com.santhosh.subscriptionsplitter.service.MemberService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/members")
-@SpringBootApplication()
 public class MemberController {
 
-    @GetMapping("/test")
-    public String testMember() {
-        return "Member API working!";
+    private final MemberService memberService;
+
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
+    @PostMapping
+    public Member addMember(@RequestBody Member member) {
+        return memberService.addMember(member);
+    }
+
+    @GetMapping("/group/{groupId}")
+    public List<Member> getMembersByGroup(@PathVariable Long groupId) {
+        return memberService.getMembersByGroupId(groupId);
     }
 }
-

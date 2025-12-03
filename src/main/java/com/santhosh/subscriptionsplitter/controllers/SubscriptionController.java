@@ -25,4 +25,10 @@ public class SubscriptionController {
     public List<Subscription> getSubscriptionsByGroup(@PathVariable Long groupId) {
         return subscriptionService.getSubscriptionsByGroupId(groupId);
     }
+
+    @GetMapping("/group/{groupId}/split")
+    public Double getSplitAmount(@PathVariable Long groupId) {
+        return subscriptionService.getSplitAmount(groupId);
+    }
+
 }

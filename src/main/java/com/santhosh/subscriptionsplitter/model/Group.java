@@ -20,5 +20,9 @@ public class Group {
 
     public Group() {}
 
+    public int getNumberOfPeople() {
+        return numberOfPeople;
+    }
+
     // getters + setters (or use Lombok)
 }
